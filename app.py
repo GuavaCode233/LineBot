@@ -34,7 +34,7 @@ def update_daily():     # 更新每日 統測TCTE 學測GSAT
         Dailydata.update(new_data)
         json.dump(Dailydata, write_file, ensure_ascii=False)
 
-def daily_report():
+def daily_report(): # 每日報告
     with open("daily.json","r",encoding= "utf-8") as daily_file:
         Dailydata = json.load(daily_file)
     # get data
@@ -100,6 +100,9 @@ def Message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text = "Stopped"))
     elif(event.message.text == "add joke"): # 加笑話
         pass
+    elif(event.message.text == ";test"):
+        Group_ID = Dailydata["Test_ID"]
+        line_bot_api.push_message(Group_ID,TextSendMessage(text=f"Running_daily: {Running_daily}"))
 
 
 if __name__ == "__main__":
