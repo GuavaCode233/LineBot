@@ -93,7 +93,7 @@ def Message(event):
             Dailydata.update(new_data)
             json.dump(Dailydata, write_file, ensure_ascii=False)
     elif(event.message.text == "今日報告"):
-        Group_ID = Dailydata["Test_ID"]
+        Group_ID = Dailydata["Group_ID"]
         line_bot_api.push_message(Group_ID,TextSendMessage(text=daily_report()))
     elif(event.message.text == ";stop"):
         Running_daily = False
